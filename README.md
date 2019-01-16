@@ -1,3 +1,4 @@
 # VUE-SHOP
 
-## Simple
+### How to run?
+npm run serve
