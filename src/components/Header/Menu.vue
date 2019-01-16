@@ -31,13 +31,26 @@
                Cart
             </router-link>
          </li>
+
+         <li class="main-menu__list__item hidden" @click="showMenu">
+               <i class="icon-menu-outline"></i>
+         </li>
       </ul>
    </nav>
 </template>
 
 <script>
+const menuItems = document.querySelectorAll(`.main-menu__list__item`);
    export default {
-      name: `Menu`
+      name: `Menu`,
+      
+      methods: {
+         showMenu() {
+            menuItems.forEach(item => {
+              console.log(`dziala`)
+            });
+         }
+      }
    }
 </script>
 
@@ -48,11 +61,16 @@
    height: 12em;
    background-color: #ffffff;
    border-radius: 0.3em;
+   box-shadow: 0 1em 0.6em -0.5em #5a64d6;
+
+   .hidden {
+      display: none;
+   }
 
    &__list {
       list-style-type: none;
       display: grid;
-      grid-template-columns: repeat(5,12em);
+      grid-template-columns: repeat(6,12em);
       grid-column-gap: 1em;
       grid-auto-rows: 8em;
       padding: 2em 0.5em;
@@ -73,6 +91,7 @@
          a {
             display: block;
             width: 100%;
+            transition: .3s;
          }
 
          i {
@@ -83,10 +102,10 @@
          }
 
          &:hover {
+            transition: .3s;
             background: $primary-gradient;
             color: #ffffff;
             cursor: pointer;
-            transition: .3s;
 
             a, i {
                color: #eeeaea;
@@ -96,11 +115,31 @@
    }
 }
 
-@media all and(max-width: $m-screen) {
+@media all and(max-width: $m-screen) {     
+   .visible {
+      display: block;
+   }
+
    .main-menu {
+
       &__list { 
-         display: none;
+         background: #ffffff;
          grid-template-columns: 1fr;
+
+         &__item {
+            display: none;
+         }
+      }
+
+      .hidden {
+         display: flex;
+         i {
+            float: right;
+         }
+
+         &:focus .main-menu__list__item {
+            display: block;
+         }
       }
    }
 }
