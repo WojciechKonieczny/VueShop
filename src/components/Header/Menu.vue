@@ -28,7 +28,7 @@
          <li class="main-menu__list__item">
             <router-link to="/cart">
                <i class="icon-basket-circled"></i>
-               Cart
+               Cart({{numberOfItems}})
             </router-link>
          </li>
 
@@ -50,6 +50,12 @@ const menuItems = document.querySelectorAll(`.main-menu__list__item`);
               console.log(`dziala`)
             });
          }
+      },
+
+      computed: {
+         numberOfItems() {
+            return this.$store.getters.numberOfItems
+         }
       }
    }
 </script>
@@ -60,7 +66,7 @@ const menuItems = document.querySelectorAll(`.main-menu__list__item`);
 .main-menu {
    height: 12em;
    background-color: #ffffff;
-   border-radius: 0.3em;
+   @include border-radius(0.3em);
    box-shadow: 0 1em 0.6em -0.5em #5a64d6;
 
    .hidden {
